@@ -51,6 +51,7 @@ export const addProduct = async (req, res) => {
       product_categories,
       product_sizes,
       product_colors,
+      gender,
     } = req.body;
 
     // 5️⃣ Upload product images (if any)
@@ -93,6 +94,7 @@ export const addProduct = async (req, res) => {
             : [],
           product_sizes: product_sizes ? JSON.parse(product_sizes) : [],
           product_colors: product_colors ? JSON.parse(product_colors) : [],
+          gender,
           product_images: uploadedUrls,
         },
       ])
@@ -156,6 +158,8 @@ export const updateProduct = async (req, res) => {
       status,
       product_categories,
       product_sizes,
+      gender,
+
     } = req.body;
 
     // ✅ Parse existing_images safely
@@ -206,6 +210,7 @@ if (req.files && req.files.length > 0) {
         product_discount_type,
         product_stock: parseInt(product_stock),
         status: status || "In Stock",
+        gender,
         product_categories: product_categories
           ? JSON.parse(product_categories)
           : [],
@@ -305,3 +310,5 @@ export const deleteProduct = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+

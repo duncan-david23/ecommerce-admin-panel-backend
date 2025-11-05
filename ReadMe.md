@@ -68,3 +68,40 @@ FOR DELETE
 USING (auth.uid() = user_id);
 
 
+# newsletter schema 
+create table newsletters (
+  id uuid default gen_random_uuid() primary key,
+  email text,
+  name text,   
+  status text,
+  user_id uuid,
+  subscribed_date date,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
+
+
+# messages schema 
+
+create table messages (
+  id uuid default gen_random_uuid() primary key,
+  user_id uuid,
+  name text not null,
+  email text not null,
+  subject text,
+  message text not null,
+  read boolean default false,
+  created_at timestamp with time zone default now()
+);
+
+
+# accountSettings schema
+CREATE TABLE public.account_settings (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),       
+  user_id uuid,  
+  display_name TEXT,                                     
+  email TEXT NOT NULL,                                   
+  phone_number TEXT,                                     
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),     
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()      
+);
