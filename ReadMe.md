@@ -105,3 +105,21 @@ CREATE TABLE public.account_settings (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),     
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()      
 );
+
+
+# coupons schema
+create table coupons (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid,
+  code text not null unique, 
+  discount_type text check (discount_type in ('fixed', 'percentage')) not null,
+  discount_value numeric(10,2) not null,
+  max_uses int,
+  uses_count int default 0,
+  valid_from timestamp with time zone default now(),
+  valid_until timestamp with time zone,
+  is_active boolean default true,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
+

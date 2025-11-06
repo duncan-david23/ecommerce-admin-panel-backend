@@ -4,6 +4,7 @@ import productRoute from './routes/productRoute.js';
 import newsletterRoute from './routes/newsletterRoute.js';
 import messageRouter from './routes/messageRouter.js';
 import accountSettingsRouter from './routes/accountSettingsRoute.js';
+import couponRoute from './routes/couponRoute.js'
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.use('/api/ecommerce', productRoute);
 app.use('/api/newsletter', newsletterRoute);
 app.use('/api/messages', messageRouter);
 app.use('/api/settings', accountSettingsRouter)
+app.use('/api/coupons', couponRoute)
 
 
 
